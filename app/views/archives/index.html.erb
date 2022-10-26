@@ -1,0 +1,41 @@
+<h1>Archives</h1>
+
+
+
+<div>
+    <% @entries.each do |day,entries| %>
+
+        <h3>Entries for <%=day %></h3>
+
+        <nav> 
+            <div class="conatiner">
+                <h4 class="heading">Calories</h4>
+                <p  class="content"><%=entries.pluck(:calories).sum %> </p>
+            </div>
+            <div class="conatiner">
+                <h4 class="heading">Proteins</h4>
+                <p  class="content"><%=entries.pluck(:proteins).sum %></p>
+            </div>
+
+            <div class="conatiner">
+                <h4 class="heading">Carbs</h4>
+                <p  class="content"><%=entries.pluck(:carbohyrates).sum %></p>
+            </div>
+            <div class="conatiner">
+                <h4 class="heading">fats</h4>
+                <p  class="content"><%=entries.pluck(:fats).sum %></p>
+            </div>            
+        </nav>
+        <% entries.each do |entry| %>
+             <%= link_to entry_path(entry) do %>
+             <div class="card">
+                <div class ="card-content">
+                <strong><%= entry.meal_type %></strong><br/>
+                </div>
+              </div>
+             <% end %>
+        <% end %>
+    <% end %>  
+</div>
+
+
